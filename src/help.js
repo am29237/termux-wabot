@@ -39,7 +39,7 @@ desc : random nsfw loli images
 usage : just send the command\n
 command : *${prefix}url2img*
 desc : take web screenshots
-usage : *${prefix}url2img [tipe] [url]*\n
+usage : *${prefix}url2img [type] [url]*\n
 command : *${prefix}simi*
 desc : your message will be replied to by simi
 usage : *${prefix}simi yourmessage*\n
