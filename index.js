@@ -117,9 +117,9 @@ async function starts() {
 
 			mess = {
 				wait: '⌛ In Process ⌛',
-				success: '✔️ Sucessful ✔️',
+				success: '✔️ Successful ✔️',
 				error: {
-					stick: '❌ Failed, an error occurred while converting the image to a sticker ❌',
+					stick: '❌ Failed, an error occurred while converting the image to a sticker. Please try again ❌',
 					Iv: '❌ Invalid link ❌'
 				},
 				only: {
@@ -293,7 +293,7 @@ async function starts() {
 					}
 					break
 				case 'tahta':
-					if (args.length < 1) return reply('Teksnya om')
+					if (args.length < 1) return reply('Text')
 					anu = `https://mhankbarbar.moe/api/htahta?text=${args.join(' ')}&apiKey=${apiKey}`
 					voss = await fetch(anu)
 					ftype = require('file-type')
@@ -412,7 +412,7 @@ async function starts() {
 							.toFormat('webp')
 							.save(ran)*/
 					} else {
-						reply(`Kirim gambar dengan caption ${prefix}sticker atau tag gambar yang sudah dikirim`)
+						reply(`Send the picture with the caption${prefix}sticker or tag image that has been already sent`)
 					}
 					break
 				case 'gtts':
@@ -422,35 +422,35 @@ async function starts() {
 					dtt = body.slice(9)
 					ranm = getRandom('.mp3')
 					dtt.length > 600
-					? reply('Textnya kebanyakan om')
+					? reply('Most of the text is unclear')
 					: gtts.save(ranm, dtt, function() {
 						client.sendMessage(from, fs.readFileSync(ranm), audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
 						fs.unlinkSync(ranm)
 					})
 					break
 				case 'meme':
-					meme = await fetchJson('https://kagchi-api.glitch.me/meme/memes', { method: 'get' })
+					meme = await fetchJson('https://meme-api.herokuapp.com/gimme', { method: 'get' })
 					buffer = await getBuffer(`https://imgur.com/${meme.hash}.jpg`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
 					break
-				/*case 'memeindo':
+				case 'memeindo':
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://imgur.com/${memein.hash}.jpg`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
-					break*/
+					break
 				case 'setprefix':
 					if (args.length < 1) return
 					if (!isOwner) return reply(mess.only.ownerB)
 					prefix = args[0]
 					setting.prefix = prefix
 					fs.writeFileSync('./src/settings.json', JSON.stringify(setting, null, '\t'))
-					reply(`Prefix berhasil di ubah menjadi : ${prefix}`)
+					reply(`The prefix has been successfully changed to : ${prefix}`)
 					break
-				/*case 'loli':
+				case 'loli':
 					loli.getSFWLoli(async (err, res) => {
 						if (err) return reply('❌ *ERROR* ❌')
 						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Citai Lolimu'})
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Remember! Citai Lolimu'})
 					})
 					break
 				case 'nsfwloli':
@@ -458,11 +458,11 @@ async function starts() {
 					loli.getNSFWLoli(async (err, res) => {
 						if (err) return reply('❌ *ERROR* ❌')
 						buffer = await getBuffer(res.url)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Dont complicate things'})
 					})
 					break
 				case 'hilih':
-					if (args.length < 1) return reply('Teksnya mana um?')
+					if (args.length < 1) return reply('Where is the text?')
 					anu = await fetchJson(`https://mhankbarbars.herokuapp.com/api/hilih?teks=${body.slice(7)}`, {method: 'get'})
 					reply(anu.result)
 					break*/
@@ -479,7 +479,7 @@ async function starts() {
 					break
 				case 'ytsearch':
 					if (args.length < 1) return reply('What are you looking for? dick?')
-					anu = await fetchJson(`https://mhankbarbar.moe/api/ytsearch?q=${body.slice(10)}&apiKey=${apiKey}`, {method: 'get'})
+					anu = await fetchJson(`https://youtube.googleapis.com/youtube/v3/search?key=AIzaSyDzeB8Qdjqhp3a61lb3-49uk9DD5mM4rbw`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					teks = '=================\n'
 					for (let i of anu.result) {
