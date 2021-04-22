@@ -19,7 +19,7 @@
 ## Clone this project
 
 ```bash
-> git clone https://github.com/MhankBarBar/termux-wabot
+> https://github.com/am29237/termux-wabot
 ```
 
 ## Install the dependencies:
